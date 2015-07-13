@@ -17,7 +17,6 @@ class PoseTransformer:
         else:
             self.visible=False
 
-
     def callback(self,data):
         rospy.logdebug(rospy.get_caller_id()+"I heard something from frame %s",data.header.frame_id)
         if self.visible:
