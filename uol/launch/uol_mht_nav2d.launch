@@ -1,11 +1,11 @@
 <launch>
   <!-- declare arg to be passed in -->
   <arg name="env" default="uol_mht"/>
-  <arg name="social" default="false"/>
+  <arg name="with_social_layer" default="false"/>
 
   <!-- 2D Navigation -->
   <include file="$(find scitos_2d_navigation)/launch/scitos_2d_nav.launch">
       <arg name="map" value="$(find strands_morse)/uol/maps/$(arg env).yaml"/>
-      <arg name="social" value="$(arg social)"/>
+      <arg name="with_social_layer" value="$(arg with_social_layer)"/>
   </include>
 </launch>
