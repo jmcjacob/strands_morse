@@ -20,8 +20,6 @@ class PoseTransformer:
     def callback(self,data):
         rospy.logdebug(rospy.get_caller_id()+"I heard something from frame %s",data.header.frame_id)
         if self.visible:
-            t = self.tf.getLatestCommonTime(self.target_tf, data.header.frame_id)
-            data.header.stamp = t
             new_pose=self.tf.transformPose(self.target_tf,data)
             self.pub.publish(new_pose)
 
@@ -54,7 +52,7 @@ class PoseTransformer:
         self.in_topic = rospy.get_param('~in', '/human/pose')
         self.out_topic_trans = rospy.get_param('~out', '/human/transformed')
         self.out_topic = rospy.get_param('~out', '/people')
-        self.target_tf = rospy.get_param('~target', '/robot')
+        self.target_tf = rospy.get_param('~target', '/map')
         self.sem_cam = rospy.get_param('~sem_cam', '/humancam')
         self.tf = TransformListener()
 
